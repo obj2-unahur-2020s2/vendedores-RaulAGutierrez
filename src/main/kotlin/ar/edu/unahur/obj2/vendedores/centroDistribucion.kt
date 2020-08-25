@@ -4,7 +4,7 @@ class CentroDistribucion(var ciudad: Ciudad) {
 
     val vendedores = mutableListOf<Vendedor>() // lista de vendedores
 
-    fun agregar(vendedor: Vendedor) {
+    fun agregar(vendedor: Vendedor) {  // agrega un tipo Vendedor
         if (vendedores.contains(vendedor)) {
             println("El vendedor ya esta registrado")
         } else {
@@ -28,7 +28,7 @@ class CentroDistribucion(var ciudad: Ciudad) {
         return (vendedores.filter{ vendedor -> vendedor.esFirme() }).toSet().toList()
     }
 
-    fun esRobusto(): Boolean { // devuelve un tipo Booelano
+    fun esRobusto(): Boolean { // devuelve un tipo Boolaano
         return this.vendedoresFirmes().size >= 3
     }
 
