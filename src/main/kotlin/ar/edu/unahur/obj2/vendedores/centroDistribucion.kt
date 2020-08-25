@@ -12,8 +12,8 @@ class CentroDistribucion(var ciudad: Ciudad) {
         }
     }
 
-    fun vendedorEstrella(): Vendedor { // devuelve un tipo Vendedor
-        return vendedores.maxBy { vendedor -> vendedor.puntajeCertificaciones }
+    fun vendedorEstrella(): Vendedor? { // devuelve un tipo Vendedor
+        return vendedores.maxBy{ it.puntajeCertificaciones() }
     }
 
     fun puedeCubrir(unaCiudad: Ciudad): Boolean {  // devuelve un tipo Booleano
@@ -21,15 +21,15 @@ class CentroDistribucion(var ciudad: Ciudad) {
     }
 
     fun coleccionVendedoresGenericos(): List<Vendedor> { // devuelve una lista tipo Vendedor
-        return vendedores.filter{ vendedor -> vendedor.otrasCertificaciones >= 1 }
+        return (vendedores.filter{ vendedor -> vendedor.otrasCertificaciones() >= 1 }).toSet().toList()
     }
 
     fun vendedoresFirmes(): List<Vendedor> { // devuelve una lista tipo Vendedor
-        return vendedores.filter{ vendedor -> vendedor.esFirme }
+        return (vendedores.filter{ vendedor -> vendedor.esFirme() }).toSet().toList()
     }
 
     fun esRobusto(): Boolean { // devuelve un tipo Booelano
-        return this.vendedoresFirmes.size >= 3
+        return this.vendedoresFirmes().size >= 3
     }
 
 }
